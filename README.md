@@ -16,7 +16,7 @@ $ python3.10 dirtyPipe.py -a
 
 ### Write a no write permission, immutable or read-only mounted file:
 ```
-$ python3.10 dirtyPipe.py -e FILE OFFSET DATA
+$ python3.10 dirtyPipe.py -w FILE OFFSET DATA
 ```
 
 #### An oferring from [**@terabitSec 🦜**](https://t.me/terabitSec).
