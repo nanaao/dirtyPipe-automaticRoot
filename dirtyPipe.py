@@ -88,7 +88,7 @@ def automaticRoot():
 def main():
     parser = argparse.ArgumentParser(epilog="An offering from https://github.com/terabitSec.")
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('-a', '--automatic', action='store_true', help="Try automatic root by hjacking an super user.")
+    group.add_argument('-a', '--automatic', action='store_true', help="Try automatic root by hjacking a super user.")
     group.add_argument('-w', '--writeFile', nargs=3, metavar=('FILE', 'OFFSET', 'DATA'), help="Use dirty pipe exploit to write a file you can read.")
 
     args = parser.parse_args()
