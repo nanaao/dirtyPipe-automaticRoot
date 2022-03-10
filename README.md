@@ -1,10 +1,9 @@
-# Dirty Pipe automatic root exploit
-## CVE-2022-0847
+# Dirty Pipe automatic root exploit (CVE-2022-0847)
+
+![eae](assets/poc.gif)
 
 ## Dependencies:
 - **Python 3.10 or above**
-
-![eae](assets/poc.gif)
 
 ## How to use:
 ### Automatic root:
