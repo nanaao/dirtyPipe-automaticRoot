@@ -10,6 +10,7 @@ def preparePipe():
         pipeSize = fcntl.fcntl(w, fcntl.F_GETPIPE_SZ)
     except AttributeError:
         print("Sorry, use the 3.10 python version or above.")
+        sys.exit(1)
 
     buffer = bytes(4096)
     i = 0
